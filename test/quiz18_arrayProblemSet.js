@@ -63,8 +63,8 @@ sumArray([10,3,10,4]);
 //problem 4
 console.log("Problem 4:max()");
 function max(arr){
-    var bigger = 0;
-    for(var i=0; i<arr.length;i++){ 
+    var bigger = arr[0];
+    for(var i=1; i<arr.length;i++){ 
         if(bigger < arr[i]){
             bigger = arr[i];
         }
