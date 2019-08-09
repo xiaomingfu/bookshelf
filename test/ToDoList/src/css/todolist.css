@@ -1,0 +1,53 @@
+body{
+    font-family: Roboto;
+}
+div{
+    width: 350px;
+    margin:100px auto;
+}
+ul{
+    padding:0px;
+    list-style-type: none;
+}
+li{
+    height: 40px;
+    line-height: 40px;
+    color: #666;
+    background: #fff;
+}
+li:nth-child(2n){
+    background: #f7f7f7;
+}
+h1{
+    color:white;
+    background: #2980b9;
+    margin:0;
+    padding: 10px 20px;
+    font-size: 24px;
+    font-weight: normal;
+}
+input{
+    font-size: 18px;
+    color:#2980b9;
+    border: none;
+    padding: 13px 13px 13px 20px;
+    box-sizing: border-box;
+    border:3px solid rgba(0,0,0,0);
+    background: #f7f7f7;
+    width: 100%;
+}
+.fa-plus{
+    float:right;
+}
+span{
+    background: #e74c3c;
+    height:40px;
+    margin-right: 20px;
+    text-align:center;
+    color:white;
+    width: 0;
+    display: inline-block; 
+    transition: 0.2s linear;
+    opacity: 0; 
+}
+
