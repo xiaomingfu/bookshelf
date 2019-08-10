@@ -1,27 +1,26 @@
-$("input").bind("enterKey", function (e) {
-    var val = $("input").val();
-    var li = "<li>" + val + "</li>";
-    $("ul").append(li);
-});
-$("input").keyup(function (e) {
-    if (e.keyCode == 13) {
-        $(this).trigger("enterKey");
-        $("input").val("");
-    }
+//Check Off Specific Todos By Clicking
+$("ul").on("click","li",function(event){
+    $(this).toggleClass("selected");
 });
 
-$("i").on("click", function(){
-    $("input").toggle();
+//Click on trash icon to delete li
+$("ul").on("click", "span",function(event){
+    $(this).parent().fadeOut(500,function(){
+        $(this).remove();
+    });
+    event.stopPropagation();
 });
 
-$("span").on("click", function(){
-    $(this).parent().remove();
+//Type in input to add new li
+$("input[type=text]").on("keypress", function(event){
+    if(event.which === 13){
+        var textInput = $(this).val();
+        $("ul").append("<li><span>X</span>" + textInput + "</li>");
+        $(this).val('');   
+    }  
 });
 
-$("li").hover(function(){
-    $(this).children().css("width", "40px");
-    $(this).children().css("opacity","1");
-},function(){
-    $(this).children().css("width", "0");
-    $(this).children().css("opacity","0");
+$(".fa-plus").on("click", function(){
+    $("input[type='text'").fadeToggle();
 });
+
