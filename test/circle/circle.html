@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Load the Paper.js library -->
+		
+		<script type="text/javascript" src="paper-full.js"></script>
+		<link rel="stylesheet" href="circle.css" type="text/css">
+		<!-- Define inlined PaperScript associate it with myCanvas -->
+		<script type="text/paperscript" canvas="myCanvas">
+		function onKeyDown(event){
+			
+			var maxPoint = new Point(view.size.width, view.size.height);
+			var randomPoint = Point.random();
+			point = randomPoint*maxPoint;
+			var myCircle = new Path.Circle(point,10);
+			myCircle.fillColor = "purple";
+		}
+		
+	
+	
+
+</script>
+	</head>
+	<body>
+		<canvas id="myCanvas" resize></canvas>
+	</body>
