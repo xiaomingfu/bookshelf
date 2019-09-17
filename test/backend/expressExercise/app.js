@@ -15,20 +15,16 @@ app.get("/", function(req, res){
 // "/speak/cow" => "The pig says 'Moo'"
 // "/speak/dog" => "The pig says 'Woof Woof!'"
 app.get("/speak/:animal", function(req, res){
-    var animal = req.params.animal;
-    var animalSound = "";
-    if(animal === "pig"){
-        animalSound = "Oink";
-    }
-    else if(animal === "cow"){
-        animalSound = "Moo";
-    }
-    else if(animal === "dog"){
-        animalSound = "Woof Woof!";
-    }
-    else{
-        res.send("Sorry, page not found... What are you doing with your life?");
-    }
+    var sounds = {
+        pig: "Oink",
+        cow: "Moo",
+        dog: "Woof Woof!",
+        cat: "I hate you human",
+        goldfish: "...",
+    };
+    var animal = req.params.animal.toLowerCase();
+    var animalSound = sounds[animal];
+    
     res.send("The " + animal + " says '" + animalSound + "'");  
 });
 
@@ -41,8 +37,7 @@ app.get("/repeat/:world/:number", function(req,res){
     var num = Number(req.params.number);
     var prt = "";
     for(var i=0; i<num; i++){
-        prt += world;
-        prt += " ";
+        prt += world + " ";
     }
     res.send(prt);
 });
