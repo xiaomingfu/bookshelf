@@ -1,9 +1,10 @@
-const request = require("request");
+const rp = require("request-promise");
 
-request('https://jsonplaceholder.typicode.com/users/1', (error, response, body)=>{
-   // eval(require("locus"));
-    if(!error && response.statusCode == 200){
+rp('https://jsonplaceholder.typicode.com/users/1')
+    .then(function(body){
         const parseData = JSON.parse(body);
         console.log(`${parseData.name} lives in ${parseData.address.city}`);
-    }
-});
+})
+    .catch(function(err){
+        console.log('ERROR', err)
+    });
