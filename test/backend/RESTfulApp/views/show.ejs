@@ -8,7 +8,7 @@
                 <span><%= blog.created.toDateString() %></span>
             </div>
             <div class="description">
-                <p><%= blog.body %></p>
+                <p><%- blog.body %></p>
             </div>
         </div>
         <a class="ui green button" href="/blogs/<%=blog._id %>/edit">Edit</a>
