@@ -14,7 +14,7 @@ router.get("/campgrounds", function (req, res) {
 });
 
 //CREATE add a new campground to DB
-router.post("/campgrounds", function (req, res) {
+router.post("/campgrounds", isLoggedIn, function (req, res) {
     var name = req.body.name;
     var image = req.body.image;
     var desc = req.body.description;
@@ -45,5 +45,13 @@ router.get("/campgrounds/:id", function (req, res) {
         }
     });
 }); 
+
+//middleware
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect("/login");
+}
 
 module.exports = router;

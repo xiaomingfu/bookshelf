@@ -12,7 +12,8 @@ var express                 = require("express"),
     campgroundRoutes       = require("./routes/campgrounds"),
     commentRoutes         = require("./routes/comments"),
     indexRoutes             =require("./routes/index");
-seeds();
+
+// seeds(); //create seeds
 
 mongoose.connect("mongodb://localhost:27017/yelpcamp", { useNewUrlParser: true });
 
