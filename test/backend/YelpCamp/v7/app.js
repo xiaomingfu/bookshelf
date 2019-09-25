@@ -10,9 +10,10 @@ var express                 = require("express"),
     passportLocalMongoose   = require("passport-local-mongoose"),
     methodOverride          = require("method-override");
     User                    = require("./models/user"),
-    campgroundRoutes       = require("./routes/campgrounds"),
-    commentRoutes         = require("./routes/comments"),
-    indexRoutes             =require("./routes/index");
+    campgroundRoutes        = require("./routes/campgrounds"),
+    commentRoutes           = require("./routes/comments"),
+    flash                   = require("connect-flash"),
+    indexRoutes             = require("./routes/index");
 
 // seeds(); //create seeds
 
@@ -23,6 +24,7 @@ app.use(express.static(__dirname +"/public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.set("view engine", "ejs");
+app.use(flash());
 
 //PASSPORT CONFIG
 app.use(require("express-session")({
@@ -38,6 +40,8 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use(function(req, res, next){
     res.locals.currentUser = req.user;
+    res.locals.error = req.flash("error");
+    res.locals.success = req.flash("success");
     next();
 });
 

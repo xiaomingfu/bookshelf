@@ -23,8 +23,8 @@ router.post("/", middleware.isLoggedIn, function (req, res) {
         id: req.user._id,
         username: req.user.username,
     };
-    var newCampground = { name: name, image: image, description: desc, author: author};
-    Campground.create(newCampground, function (err, newlyCreated){
+    var Campground = { name: name, image: image, description: desc, author: author};
+    Campground.create(Campground, function (err, newlyCreated){
         if (err) {
             console.log(err);
         } else {
@@ -38,7 +38,6 @@ router.post("/", middleware.isLoggedIn, function (req, res) {
 router.get("/new", middleware.isLoggedIn, function (req, res) {
     res.render("campgrounds/new");
 });
-
 // SHOW - shows more info about one campground
 router.get("/:id", function (req, res) {
     //find the campground with provided ID
@@ -47,7 +46,7 @@ router.get("/:id", function (req, res) {
             console.log(err);
         } else {
             //render show template with that campground
-            res.render("campgrounds/show", {campground:foundCampground});
+            res.render("campgrounds/show",{campground: foundCampground});
         }
     });
 });
@@ -55,13 +54,17 @@ router.get("/:id", function (req, res) {
 //EDIT CAMPGROUND ROUTE
 router.get("/:id/edit", middleware.checkCampgroundOwnership, function(req, res){
     Campground.findById(req.params.id, function(err, foundCampground){
-        res.render("campgrounds/edit", {campground: foundCampground});
+            res.render("campgrounds/edit", {campground: foundCampground});
     });
 });
 //UPDATE CAMPGROUND ROUTE
 router.put("/:id", middleware.checkCampgroundOwnership, function(req, res){
     Campground.findByIdAndUpdate(req.params.id, req.body.campground, function(err, updateCampground){
-        res.redirect("/campgrounds/" + req.params.id);
+        if(err){
+            res.redirect("/campgrouds");
+        }else{
+            res.redirect("/campgrounds/" + req.params.id);
+        }
     });
 });
 //DESTROY ROUTE
