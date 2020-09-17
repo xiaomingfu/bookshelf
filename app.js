@@ -2,21 +2,18 @@ var express = require("express"),
   app = express(),
   bodyParser = require("body-parser"),
   mongoose = require("mongoose"),
-  Book = require("./models/book"),
-  Comment = require("./models/comment"),
   seeds = require("./seeds"),
   passport = require("passport"),
   LocalStrategy = require("passport-local"),
-  passportLocalMongoose = require("passport-local-mongoose"),
-  methodOverride = require("method-override");
-(User = require("./models/user")),
-  (bookRoutes = require("./routes/books")),
-  (commentRoutes = require("./routes/comments")),
-  (flash = require("connect-flash")),
-  (indexRoutes = require("./routes/index"));
+  methodOverride = require("method-override"),
+  User = require("./models/user"),
+  bookRoutes = require("./routes/books"),
+  commentRoutes = require("./routes/comments"),
+  flash = require("connect-flash"),
+  indexRoutes = require("./routes/index");
 
 // seeds(); //create seeds
-var url = process.env.DATABASEURL || "mongodb://localhost:27017/yelpcamp";
+var url = process.env.DATABASEURL || "mongodb://localhost:27017/bookshelf";
 mongoose.connect(url, { useNewUrlParser: true });
 
 app.use(express.static(__dirname + "/public"));
